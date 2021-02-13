@@ -1,0 +1,21 @@
+<div class="img-gallery-container">
+  <div class="gallery-header">
+    <h1>Image Gallery</h1>
+    <label class="upload-btn">
+      <input type='file' (change)="addImage($event)">
+      <mat-icon>add</mat-icon>
+    </label>
+  </div>
+
+  <mat-grid-list [cols]="numCols" rowHeight="1:1" gutterSize="10px">
+    <mat-grid-tile *ngFor="let img of service.listOfImages$ | async; let i = index"
+      [matTooltip]="getImgAddedDateString(img.addedOn)"
+      (click)="imgClick(img.name, i)"
+    >
+      <img [src]="img.src"
+        [alt]="img.name"
+      />
+    </mat-grid-tile>
+  </mat-grid-list>
+
+</div>
